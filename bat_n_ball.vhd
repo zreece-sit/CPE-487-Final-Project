@@ -60,6 +60,8 @@ ARCHITECTURE Behavioral OF bat_n_ball IS
     
     -- walls will be set to 0 as they are hit, each bit is one wall
     signal active : std_logic_vector(23 downto 0) := "111111111111111111111111";
+    signal game_count : std_logic_vector(3 downto 0) := "0000";
+    
     
 BEGIN
     
@@ -69,9 +71,6 @@ BEGIN
     green <= NOT ball_on;
     blue <= NOT wall_on;
     --blue <= NOT ball_on;
-     
-    ball_speed(4 downto 1) <= switch(4 downto 1);
-    ball_speed(0) <= '1';
     
     
     -- process to draw round ball
@@ -79,6 +78,14 @@ BEGIN
     balldraw : PROCESS (ball_x, ball_y, pixel_row, pixel_col) IS
         VARIABLE vx, vy : STD_LOGIC_VECTOR (10 DOWNTO 0); -- 9 downto 0
     BEGIN
+        if (game_count = "0000") then
+            ball_speed(4 downto 1) <= switch(4 downto 1);
+            ball_speed(0) <= '1';
+        else
+            ball_speed(4 downto 1) <= switch(4 downto 1) + game_count;
+            ball_speed(0) <= '1';
+        end if;
+            
         IF pixel_col <= ball_x THEN -- vx = |ball_x - pixel_col|
             vx := ball_x - pixel_col;
         ELSE
@@ -121,14 +128,21 @@ BEGIN
         ELSIF ball_y <= bsize THEN -- bounce off top wall
         recent <= '0';
             ball_y_motion <= ball_speed; -- set vspeed to (+ ball_speed) pixels
-        ELSIF (ball_y + bsize >= 600) or (active = "000000000000000000000000") THEN -- if ball meets bottom wall
+        ELSIF (ball_y + bsize >= 600) THEN -- if ball meets bottom wall
         recent <= '0';
             ball_y_motion <= (NOT ball_speed) + 1; -- set vspeed to (- ball_speed) pixels
             game_on <= '0'; -- and make ball disappear
             hitcount <= "0000000000000000";
             bat_w <= 40;
             active <= "111111111111111111111111";
+            game_count <= "0000";
         END IF;
+        if(active = "000000000000000000000000") then
+            game_count <= game_count + '1';
+            active <= "111111111111111111111111";
+            bat_w <= bat_w + 15;
+        end if;
+        
         IF (ball_x + bsize/2) >= (bat_x - bat_w) AND
          (ball_x - bsize/2) <= (bat_x + bat_w) AND
              (ball_y + bsize/2) >= (bat_y - bat_h) AND
