@@ -48,3 +48,5 @@
   - Push BTNC to start the Brick Break game
 
   - Use BTNL and BTNR to move the bat side-to-side and break every brick!
+
+5. Close project
