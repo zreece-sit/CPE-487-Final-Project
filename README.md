@@ -1,7 +1,7 @@
 # CPE-487-Final-Project
 ### Nate Dawson & Zachary Reece
 ## Brick Break Game
-#### Expanded off of Lab 6
+#### Expanded off of Lab 6: Video Game PONG
 
 - The bat_n_ball file is responsible for drawing both the bat and ball on the screen. It also causes the ball to bounce by reversing its vertical speed when it collides with the bat, top wall, or the top or bottom of the bricks, and by reversing its horizontal speed when it collides with the side of the bricks or one of the side walls.
 
