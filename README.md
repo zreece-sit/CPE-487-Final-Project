@@ -3,11 +3,13 @@
 ## Brick Break Game
 #### Expanded off of Lab 6: Video Game PONG
 
+_A description of the expected behavior of the project, attachments needed (speaker module, VGA connector, etc.), related images/diagrams, etc. The more detailed the better – you all know how much I love a good finite state machine and Boolean logic, so those could be some good ideas if appropriate for your system. If not, some kind of high level block diagram showing how different parts of your program connect together and/or showing how what you have created might fit into a more complete system could be appropriate instead._
+
 - The bat_n_ball file is responsible for drawing both the bat and ball on the screen. It also causes the ball to bounce by reversing its vertical speed when it collides with the bat, top wall, or the top or bottom of the bricks, and by reversing its horizontal speed when it collides with the side of the bricks or one of the side walls.
 
   - The variable game_on indicates whether or not the ball is currently in play.
   - When game_on = ‘1’, the ball is visible and bounces off the bat, walls, and bricks.
-  - If the ball hits the bottom wall, game_on is set to ‘0’. When game_on = ‘0’, the ball is not visible and waits to be served.
+  - If the ball hits the bottom wall, game_on is set to ‘0’. When game_on = ‘0’, the ball is not visible and waits to be served, and the bricks and counter reset.
   - When the serve input goes high, game_on is set to ‘1’ and the ball becomes visible again.
   - other modifications?
 
@@ -22,6 +24,8 @@
   - BTNC on the Nexys A7 board is used to serve the ball and start the Brick Break game.
   - The process ckp is used to generate timing signals for the VGA and ADC modules.
   - The output of the adc_if module drives bat_x of the bat_n_ball module.
+
+### Steps to Program Nexys Board with Vivado
 
 1. Create a new RTL project pong in Vivado:
 
@@ -50,3 +54,14 @@
   - Use BTNL and BTNR to move the bat side-to-side and break every brick!
 
 5. Close project
+
+### Description of Inputs and Outputs
+_As part of this category, if using starter code of some kind (discussed below), you should add at least one input and at least one output appropriate to your project to demonstrate your understanding of modifying the ports of your various architectures and components in VHDL as well as the separate .xdc constraints file._
+
+### Images and/or videos of the project in action interspersed throughout to provide context (10 points of the Submission category)
+
+### Modifications
+If building on an existing lab or expansive starter code of some kind, describe your “modifications” – the changes made to that starter code to improve the code, create entirely new functionalities, etc. Unless you were starting from one of the labs, please share any starter code used as well, including crediting the creator(s) of any code used. It is perfectly ok to start with a lab or other code you find as a baseline, but you will be judged on your contributions on top of that pre-existing code!_
+
+### Conclusion
+_Conclude with a summary of the process itself – who was responsible for what components (preferably also shown by each person contributing to the github repository!), the timeline of work completed, any difficulties encountered and how they were solved, etc._
