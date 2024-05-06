@@ -63,5 +63,21 @@ _As part of this category, if using starter code of some kind (discussed below),
 ### Modifications
 _If building on an existing lab or expansive starter code of some kind, describe your “modifications” – the changes made to that starter code to improve the code, create entirely new functionalities, etc. Unless you were starting from one of the labs, please share any starter code used as well, including crediting the creator(s) of any code used. It is perfectly ok to start with a lab or other code you find as a baseline, but you will be judged on your contributions on top of that pre-existing code!_
 
+- A total of 11 new logic vectors were assigned 8 x-coordinates and 3 y-coordinates to generate an 8 x 3 grid of walls.
+
+ - These walls were drawn with the same logic for drawing the bat in the original Lab 6 code in the class Github repository.
+  
+ - The same logic was used for the bouncing physics off the walls.
+  
+- A 24 bit vector named _active_ was used to represent each wall, each location would determine if a wall was hit or not.
+
+- _hitcounter_ was modified to count the number of walls hit instead of how many times the ball hits the bat.
+
+- When all walls are destroyed, the game resets the walls but keeps the number of hits encouraging the user to play on for a higher score.
+
+- Every time all the walls are cleared, the ball speeds up making the game increasingly difficult.
+
+ - To compensate for this, the bat also gets thicker each time.
+
 ### Conclusion
 _Conclude with a summary of the process itself – who was responsible for what components (preferably also shown by each person contributing to the github repository!), the timeline of work completed, any difficulties encountered and how they were solved, etc._
