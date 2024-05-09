@@ -24,6 +24,7 @@ _A description of the expected behavior of the project, attachments needed (spea
   - BTNC on the Nexys A7 board is used to serve the ball and start the Brick Break game.
   - The process ckp is used to generate timing signals for the VGA and ADC modules.
   - The output of the adc_if module drives bat_x of the bat_n_ball module.
+  - The bat x position increases while BTNR is pressed, and decreases as BTNL is pressed.
 
 ### Steps to Program Nexys Board with Vivado
 
@@ -96,13 +97,17 @@ _If building on an existing lab or expansive starter code of some kind, describe
 - Every time all the walls are cleared, the ball speeds up making the game increasingly difficult.
 
   - To compensate for this, the bat also gets thicker each time.
+ 
+- other modifications?
 
 ### Conclusion
-_Conclude with a summary of the process itself – who was responsible for what components (preferably also shown by each person contributing to the github repository!), the timeline of work completed, any difficulties encountered and how they were solved, etc._
+_Conclude with a summary of the process itself – who was responsible for what components, any difficulties encountered and how they were solved, etc._
+
+- For this project, Nate mainly worked on modifying the code while Zach mainly worked on the presentation and repository, with both of us debugging and collaborating in both lab sessions and online. 
 
 - It was difficult to avoid spamming if statements for each wall. With the system of having coordinates requiring only 11 variables instead of 48 and utilizing one 24 bit vector to hold the status of every wall the code was still efficient enough.
 
 - There were moments where the ball would phase though the bat even though we had not changed that process. We believe this was due to the board slowing down and missing the ball connecting with the bat, so we made the bat look slightly thicker but have a significantly bigger hitbox. 
 
-- The hitcounter would only display one digit, but this was because of an error in the base code where cnt was called instead of count
+- The hitcounter would only display one digit, but this was because of an error in the base code where cnt was called instead of count.
 
