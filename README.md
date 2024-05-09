@@ -20,7 +20,7 @@ _A description of the expected behavior of the project, attachments needed (spea
   - The top 4 zeros fall off the most significant end of the shift register leaving the 12-bit data in place after 16 clock cycles.
   - When CS goes high, this data is synchronously loaded into the two 12-bit parallel outputs of the module.
 
-- The pong module is the top level.
+- The pong module is the top level program.
   - BTNC on the Nexys A7 board is used to serve the ball and start the Brick Break game.
   - The process ckp is used to generate timing signals for the VGA and ADC modules.
   - The output of the adc_if module drives bat_x of the bat_n_ball module.
@@ -60,23 +60,23 @@ _A description of the expected behavior of the project, attachments needed (spea
 Key Inputs:
 
 - clk_in : standard logic (system clock)
-- dig : 3-bit s.l. vector (selects which digit on Nexys board to display)
-- data : 16-bit s.l. vector ()
-- bat_x : 11-bit s.l. vector (width of bat)
+- dig : 3-bit standard logic vector (selects which digit on Nexys board to display)
+- data : 16-bit standard logic vector
+- bat_x : 11-bit standard logic vector (width of bat)
 - serve : standard logic (generates ball to play)
 - btnl : standard logic (button to move bat left)
 - btnr : standard logic (button to move bat right)
 - btn0 : standard logic (button to start the game)
-- sw(10 down to 0) (controls the speed)
+- sw : 11-bit standard logic vector (controls the speed)
 
 Key Outputs:
 
-- anode : 8-bit s.l. vector ()
-- seg : 7-bit s.l vector (selects which segments to display corresponding to the current digit)
+- anode : 8-bit standard logic vector (each digit screen on Nexys board to display)
+- seg : 7-bit standard logic vector (selects which segments to display corresponding to the current digit)
 - red : standard logic (red color setting for program)
 - green : standard logic (green color setting for program)
 - blue : standard logic (blue color setting for program)
-- hitcount : s.l.vector (measures how many walls have been hit by the ball)
+- hitcount : standard logic vector (measures how many walls have been hit by the ball)
 
 ### Modifications
 _If building on an existing lab or expansive starter code of some kind, describe your “modifications” – the changes made to that starter code to improve the code, create entirely new functionalities, etc. Unless you were starting from one of the labs, please share any starter code used as well, including crediting the creator(s) of any code used. It is perfectly ok to start with a lab or other code you find as a baseline, but you will be judged on your contributions on top of that pre-existing code!_
