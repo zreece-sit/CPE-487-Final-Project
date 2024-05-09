@@ -56,18 +56,36 @@ _A description of the expected behavior of the project, attachments needed (spea
 5. Close project
 
 ### Description of Inputs and Outputs
-_As part of this category, if using starter code of some kind (discussed below), you should add at least one input and at least one output appropriate to your project to demonstrate your understanding of modifying the ports of your various architectures and components in VHDL as well as the separate .xdc constraints file._
 
-### Images and/or videos of the project in action interspersed throughout to provide context (10 points of the Submission category)
+Key Inputs:
+
+- clk_in : standard logic (system clock)
+- dig : 3-bit s.l. vector (selects which digit on Nexys board to display)
+- data : 16-bit s.l. vector ()
+- bat_x : 11-bit s.l. vector (width of bat)
+- serve : standard logic (generates ball to play)
+- btnl : standard logic (button to move bat left)
+- btnr : standard logic (button to move bat right)
+- btn0 : standard logic (button to start the game)
+- sw(10 down to 0) (controls the speed)
+
+Key Outputs:
+
+- anode : 8-bit s.l. vector ()
+- seg : 7-bit s.l vector (selects which segments to display corresponding to the current digit)
+- red : standard logic (red color setting for program)
+- green : standard logic (green color setting for program)
+- blue : standard logic (blue color setting for program)
+- hitcount : s.l.vector (measures how many walls have been hit by the ball)
 
 ### Modifications
 _If building on an existing lab or expansive starter code of some kind, describe your “modifications” – the changes made to that starter code to improve the code, create entirely new functionalities, etc. Unless you were starting from one of the labs, please share any starter code used as well, including crediting the creator(s) of any code used. It is perfectly ok to start with a lab or other code you find as a baseline, but you will be judged on your contributions on top of that pre-existing code!_
 
 - A total of 11 new logic vectors were assigned 8 x-coordinates and 3 y-coordinates to generate an 8 x 3 grid of walls.
 
- - These walls were drawn with the same logic for drawing the bat in the original Lab 6 code in the class Github repository.
+  - These walls were drawn with the same logic for drawing the bat in the original Lab 6 code in the class Github repository.
   
- - The same logic was used for the bouncing physics off the walls.
+- The same logic was used for the bouncing physics off the walls.
   
 - A 24 bit vector named _active_ was used to represent each wall, each location would determine if a wall was hit or not.
 
@@ -77,7 +95,14 @@ _If building on an existing lab or expansive starter code of some kind, describe
 
 - Every time all the walls are cleared, the ball speeds up making the game increasingly difficult.
 
- - To compensate for this, the bat also gets thicker each time.
+  - To compensate for this, the bat also gets thicker each time.
 
 ### Conclusion
 _Conclude with a summary of the process itself – who was responsible for what components (preferably also shown by each person contributing to the github repository!), the timeline of work completed, any difficulties encountered and how they were solved, etc._
+
+- It was difficult to avoid spamming if statements for each wall. With the system of having coordinates requiring only 11 variables instead of 48 and utilizing one 24 bit vector to hold the status of every wall the code was still efficient enough.
+
+- There were moments where the ball would phase though the bat even though we had not changed that process. We believe this was due to the board slowing down and missing the ball connecting with the bat, so we made the bat look slightly thicker but have a significantly bigger hitbox. 
+
+- The hitcounter would only display one digit, but this was because of an error in the base code where cnt was called instead of count
+
