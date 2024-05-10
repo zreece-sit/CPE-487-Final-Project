@@ -11,7 +11,7 @@ _A description of the expected behavior of the project, attachments needed (spea
   - When game_on = ‘1’, the ball is visible and bounces off the bat, walls, and bricks.
   - If the ball hits the bottom wall, game_on is set to ‘0’. When game_on = ‘0’, the ball is not visible and waits to be served, and the bricks and counter reset.
   - When the serve input goes high, game_on is set to ‘1’ and the ball becomes visible again.
-  - other modifications?
+  - Hitcount now has Leading Zero Suppression and counts the amount of walls missing. 
 
 - The adc_if module converts the serial data from both channels of the ADC into 12-bit parallel format.
   - When the CS line of the ADC is taken low, it begins a conversion and serially outputs a 16-bit quantity on the next 16 falling edges of the ADC serial clock.
